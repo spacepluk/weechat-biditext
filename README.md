@@ -4,6 +4,8 @@ This simple script processes the messages using `fribidi` before they are
 printed.  This way you can see messages written in RTL languages like Hebrew
 and Arab in the correct order.
 
+This is also allegedly the shortest weechat script that actually does something
+useful :)
 
 Dependencies
 ------------
