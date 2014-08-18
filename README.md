@@ -9,10 +9,15 @@ useful :)
 
 Dependencies
 ------------
-This script depends on `libfribidi` and it's python bindings. On Debian system
-installing this package should be enough:
+This script depends on `libfribidi` and it's python bindings.
+
+On Debian system installing this package should be enough:
 
     # aptitude install python-pyfribidi
+
+On Arch Linux you can use [pyfribidi][1] from AUR.
+
+[1]: https://aur.archlinux.org/packages/pyfribidi
 
 
 TODO
