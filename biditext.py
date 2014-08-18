@@ -19,7 +19,7 @@
 # This script uses fribidi library to display rtl text properly
 
 import weechat
-from pyfribidi import *
+from pyfribidi import log2vis, LTR
 
 SCRIPT_NAME    = "biditext"
 SCRIPT_AUTHOR  = "Oscar Morante <oscar@morante.eu>"
