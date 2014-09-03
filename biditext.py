@@ -35,7 +35,7 @@ def biditext_cb(data, modifier, modifier_data, line):
     buffer_pointer = weechat.buffer_search(plugin_name, buffer_name)
 
     weechat.prnt_date_tags(buffer_pointer, 0, tags + ',no_show_non_bidied', line)
-    weechat.prnt_date_tags(buffer_pointer, 0, tags + ',no_log', ltr_line)
+    weechat.prnt_date_tags(buffer_pointer, 0, 'no_log', ltr_line)
 
     return ""
 
