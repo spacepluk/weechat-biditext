@@ -23,20 +23,37 @@ from pyfribidi import log2vis, LTR
 
 SCRIPT_NAME    = "biditext"
 SCRIPT_AUTHOR  = "Oscar Morante <oscar@morante.eu>"
-SCRIPT_VERSION = "1"
+SCRIPT_VERSION = "2"
 SCRIPT_LICENSE = "GPL3"
 SCRIPT_DESC    = "Use fribidi to handle RTL text"
 
 
 def biditext_cb(data, modifier, modifier_data, line):
-    return log2vis(line, LTR)
+    ltr_line = log2vis(line, LTR)
+
+    plugin_name, buffer_name, tags = modifier_data.split(';')
+    buffer_pointer = weechat.buffer_search(plugin_name, buffer_name)
+
+    weechat.prnt_date_tags(buffer_pointer, 0, tags + ',no_show_non_bidied', line)
+    weechat.prnt_date_tags(buffer_pointer, 0, tags + ',no_log', ltr_line)
+
+    return ""
 
 
 if __name__ == "__main__":
-    if weechat.register(SCRIPT_NAME,
-                        SCRIPT_AUTHOR,
-                        SCRIPT_VERSION,
-                        SCRIPT_LICENSE,
-                        SCRIPT_DESC, "", ""):
-        weechat.hook_modifier('weechat_print', 'biditext_cb', '')
+    script_registered = weechat.register(
+        SCRIPT_NAME,
+        SCRIPT_AUTHOR,
+        SCRIPT_VERSION,
+        SCRIPT_LICENSE,
+        SCRIPT_DESC,
+        "",
+        "",
+    )
+    if script_registered:
+        weechat.hook_modifier(
+            'weechat_print',
+            'biditext_cb',
+            '',
+        )
 
