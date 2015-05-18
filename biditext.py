@@ -19,7 +19,7 @@
 # This script uses fribidi library to display rtl text properly
 
 import weechat
-from pyfribidi import log2vis, LTR
+from pyfribidi import log2vis, ON
 
 SCRIPT_NAME    = "biditext"
 SCRIPT_AUTHOR  = "Oscar Morante <oscar@morante.eu>"
@@ -29,7 +29,13 @@ SCRIPT_DESC    = "Use fribidi to handle RTL text"
 
 
 def biditext_cb(data, modifier, modifier_data, line):
-    return log2vis(line, LTR)
+    # We assume a tab separates the nick from the text
+    text = line.split('\t', 1)
+    if len(text) > 1:
+        text[1] = log2vis(text[1], ON)
+        return '\t'.join(text)
+
+    return line
 
 
 if __name__ == "__main__":
